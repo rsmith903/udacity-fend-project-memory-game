@@ -134,7 +134,18 @@ function matchCard(element) {
     matchedCardsCount++;
 }
 
+// number of moves (pair of cards clicked)
+let movesCounter = 0;
+
+const movesDisplay = document.querySelector(".moves");
+
+function movesCount() {
+    movesCounter += 1;
+    movesDisplay.textContent = movesCounter;
+}
+
 let openCardsList = [];
+
 function cardTest(event) {
     // push clicked element (card) to a list
     openCardsList.push(event.target.children);
@@ -152,8 +163,11 @@ function cardTest(event) {
             // hide cards
             hideCard();
         }
-        // Clear out the list of cards after the test
+        // clear out the list of cards after the test
         openCardsList.splice(0, 2);
+
+        // increase moves count
+        movesCount();
     }
 }
 
