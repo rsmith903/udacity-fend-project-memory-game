@@ -98,16 +98,30 @@ h1 {
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+    display: inline-flex;
+    margin: 0 5px;
 }
 
 .score-panel .stars li {
     list-style: none;
-    display: inline-block;
+    display: inline-flex;
+}
+
+.fa-star {
+    color: rgba(170, 126, 205, 1);
+}
+
+.score-panel .timer {
+    display: inline-flex;
+    margin-left: 5%;
+}
+
+.minute {
+    margin-left: 5%;
 }
 
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    display: inline-flex;
 }
