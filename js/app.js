@@ -73,6 +73,12 @@ function timer() {
     }
 }
 
+function stopTimer() {
+    clearInterval(startTimer);
+    second = 0;
+    minute = 1;
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -119,9 +125,13 @@ function hideCard() {
     }, 500);
 }
 
+// number of matched cards
+let matchedCardsCount = 0;
+
 function matchCard(element) {
     element.parentElement.classList.remove("open", "show");
     element.parentElement.classList.add("match");
+    matchedCardsCount++;
 }
 
 let openCardsList = [];
@@ -134,6 +144,10 @@ function cardTest(event) {
         if (openCardsList[0].item(0).className == openCardsList[1].item(0).className) {
             matchCard(openCardsList[0].item(0));
             matchCard(openCardsList[1].item(0));
+            // check for end of the game
+            if (matchedCardsCount === 16) {
+                stopTimer();
+            }
         } else {
             // hide cards
             hideCard();
