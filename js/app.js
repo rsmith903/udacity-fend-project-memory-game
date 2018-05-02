@@ -202,3 +202,31 @@ function cardTest(event) {
 }
 
 deck.addEventListener('click', showCard);
+
+// Restart game
+function restartGame() {
+    // removing cards from deck
+    while (deck.firstChild) {
+        deck.removeChild(deck.firstChild);
+    }
+    shuffle(cardsArray);
+    buildCards();
+    stopTimer();
+    isFirstClick = true;
+    matchedCardsCount = 0;
+    movesCounter = 0;
+    starsNum = `<ul class="stars">
+                    ${star}
+                    ${star}
+                    ${star}
+                </ul>`;
+    movesDisplay.textContent = movesCounter;
+    stars.childNodes[3].firstElementChild.style.color = "rgba(170, 126, 205, 1)";
+    stars.childNodes[5].firstElementChild.style.color = "rgba(170, 126, 205, 1)";
+    seconds.textContent = "00";
+    minutes.textContent = "00";
+    openCardsList = [];
+}
+
+const restartButton = document.querySelector(".restart");
+restartButton.addEventListener('click', restartGame);
