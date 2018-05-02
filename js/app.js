@@ -54,6 +54,25 @@ function buildCards() {
 
 buildCards();
 
+// Timer:
+let second = 0;
+let minute = 1;
+let startTimer;
+const seconds = document.querySelector(".second");
+const minutes = document.querySelector(".minute");
+
+function timer() {
+    if (second < 60) {
+        seconds.textContent = second.toLocaleString(undefined, {minimumIntegerDigits: 2});
+        second++;
+    } else {
+        second = 0;
+        seconds.textContent = second.toLocaleString(undefined, {minimumIntegerDigits: 2});
+        minutes.textContent = minute.toLocaleString(undefined, {minimumIntegerDigits: 2});
+        minute++;
+    }
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -65,7 +84,16 @@ buildCards();
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+ // start timer on first click
+let isFirstClick = true;
+
 function showCard(event) {
+    if (isFirstClick) {
+        startTimer = setInterval(function() {
+            timer();
+        }, 1000);
+        isFirstClick = false;
+    }
     if (event.target === event.currentTarget) {
         return true;
     } else if (event.target.classList.contains('show')) {
