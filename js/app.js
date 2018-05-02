@@ -36,3 +36,47 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+const deck = document.querySelector(".deck");
+
+function showCard(event) {
+    event.target.classList.add("open", "show");
+    // test if cards match
+    cardTest(event);
+}
+
+function hideCard() {
+    const openedCard = document.getElementsByClassName("open");
+    openedCard[0].classList.add("no-match");
+    openedCard[1].classList.add("no-match");
+    setTimeout(function(){
+        openedCard[0].classList.remove("open", "show", "no-match");
+        openedCard[0].classList.remove("open", "show", "no-match");
+    }, 500);
+}
+
+function matchCard(element) {
+    element.parentElement.classList.remove("open", "show");
+    element.parentElement.classList.add("match");
+}
+
+let openCardsList = [];
+function cardTest(event) {
+    // push clicked element (card) to a list
+    openCardsList.push(event.target.children);
+    // test if the two cards are clicked
+    if (openCardsList[1]) {
+        // test if clicked cards are a match or not
+        if (openCardsList[0].item(0).className == openCardsList[1].item(0).className) {
+            matchCard(openCardsList[0].item(0));
+            matchCard(openCardsList[1].item(0));
+        } else {
+            // hide cards
+            hideCard();
+        }
+        // Clear out the list of cards after the test
+        openCardsList.splice(0, 2);
+    }
+}
+
+deck.addEventListener('click', showCard);
