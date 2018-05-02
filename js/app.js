@@ -66,9 +66,19 @@ buildCards();
  */
 
 function showCard(event) {
-    event.target.classList.add("open", "show");
-    // test if cards match
-    cardTest(event);
+    if (event.target === event.currentTarget) {
+        return true;
+    } else if (event.target.classList.contains('show')) {
+        return true;
+    } else if (event.target.classList.contains('fa')) {
+        return true;
+    } else if (event.target.classList.contains('match')) {
+        return true;
+    } else {
+        event.target.classList.add("open", "show");
+        // test if cards match
+        cardTest(event);
+    }
 }
 
 function hideCard() {
