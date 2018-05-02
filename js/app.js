@@ -144,6 +144,33 @@ function movesCount() {
     movesDisplay.textContent = movesCounter;
 }
 
+// Stars rating
+const stars = document.querySelector(".stars");
+const star = '<li><i class="fa fa-star"></i></li>'
+
+// number of stars at the begining of the game
+let starsNum = `<ul class="stars">
+                    ${star}
+                    ${star}
+                    ${star}
+                </ul>`;
+
+function starsRating() {
+    if (movesCounter >= 12 && movesCounter < 20) {
+        stars.childNodes[5].firstElementChild.style.color = "rgba(170, 126, 205, 0.3)";
+        starsNum = `<ul class="stars">
+                        ${star}
+                        ${star}
+                    </ul>`;
+    }
+    if (movesCounter >= 20) {
+        stars.childNodes[3].firstElementChild.style.color = "rgba(170, 126, 205, 0.3)";
+        starsNum = `<ul class="stars">
+                        ${star}
+                    </ul>`;
+    }
+}
+
 let openCardsList = [];
 
 function cardTest(event) {
@@ -168,6 +195,9 @@ function cardTest(event) {
 
         // increase moves count
         movesCount();
+
+        // check moves count and apply stars rating
+        starsRating();
     }
 }
 
