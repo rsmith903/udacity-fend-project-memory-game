@@ -1,3 +1,5 @@
+let second, minute, startTimer, isFirstClick, matchedCardsCount, movesCounter, starsNum, openCardsList;
+
 /*
  * Create a list that holds all of your cards
  */
@@ -46,6 +48,7 @@ shuffle(cardsArray);
 const deck = document.querySelector(".deck");
 
 function buildCards() {
+    // create and add cards
     cardsArray.forEach(function(faClass) {
         let cardElement = `<li class="card"><i class="fa ${faClass}"></i></li>`;
         deck.insertAdjacentHTML("beforeend", cardElement);
@@ -55,9 +58,9 @@ function buildCards() {
 buildCards();
 
 // Timer:
-let second = 0;
-let minute = 1;
-let startTimer;
+second = 0;
+minute = 1;
+
 const seconds = document.querySelector(".second");
 const minutes = document.querySelector(".minute");
 
@@ -91,24 +94,22 @@ function stopTimer() {
  */
 
  // start timer on first click
-let isFirstClick = true;
+isFirstClick = true;
 
 function showCard(event) {
-    if (isFirstClick) {
-        startTimer = setInterval(function() {
-            timer();
-        }, 1000);
-        isFirstClick = false;
-    }
-    if (event.target === event.currentTarget) {
+    // prevent click event code execution on open cards and other parts of deck
+    if ((event.target === event.currentTarget) ||
+        (event.target.classList.contains('show')) ||
+        (event.target.classList.contains('fa')) ||
+        (event.target.classList.contains('match'))) {
         return true;
-    } else if (event.target.classList.contains('show')) {
-        return true;
-    } else if (event.target.classList.contains('fa')) {
-        return true;
-    } else if (event.target.classList.contains('match')) {
-        return true;
-    } else {
+    } else { // prevent timer start if clicked outside cards
+        if (isFirstClick) {
+            startTimer = setInterval(function() {
+                timer();
+            }, 1000);
+            isFirstClick = false;
+        }
         event.target.classList.add("open", "show");
         // test if cards match
         cardTest(event);
@@ -125,8 +126,8 @@ function hideCard() {
     }, 500);
 }
 
-// number of matched cards
-let matchedCardsCount = 0;
+// count matched cards
+matchedCardsCount = 0;
 
 function matchCard(element) {
     element.parentElement.classList.remove("open", "show");
@@ -134,8 +135,8 @@ function matchCard(element) {
     matchedCardsCount++;
 }
 
-// number of moves (pair of cards clicked)
-let movesCounter = 0;
+// count number of moves (pair of cards clicked)
+movesCounter = 0;
 
 const movesDisplay = document.querySelector(".moves");
 
@@ -148,12 +149,12 @@ function movesCount() {
 const stars = document.querySelector(".stars");
 const star = '<li><i class="fa fa-star"></i></li>'
 
-// number of stars at the begining of the game
-let starsNum = `<ul class="stars">
-                    ${star}
-                    ${star}
-                    ${star}
-                </ul>`;
+// create modal rating value, number of stars at the begining of the game
+starsNum = `<ul class="stars">
+                ${star}
+                ${star}
+                ${star}
+            </ul>`;
 
 function starsRating() {
     if (movesCounter >= 12 && movesCounter < 20) {
@@ -171,7 +172,7 @@ function starsRating() {
     }
 }
 
-let openCardsList = [];
+openCardsList = [];
 
 function cardTest(event) {
     // push clicked element (card) to a list
@@ -205,13 +206,13 @@ function cardTest(event) {
 
 deck.addEventListener('click', showCard);
 
-// Restart game
+// Restart game (values)
 function restartGame() {
-    // removing cards from deck
+    // remove cards from deck
     while (deck.firstChild) {
         deck.removeChild(deck.firstChild);
     }
-    // removing modal game values
+    // remove modal game values
     while (modalContent.firstChild) {
         modalContent.removeChild(modalContent.firstChild);
     }
@@ -237,14 +238,15 @@ function restartGame() {
 const restartButton = document.querySelector(".restart");
 restartButton.addEventListener('click', restartGame);
 
-// Modal
+// Pop-up modal
 const modal = document.querySelector(".modal");
 const closeButton = document.querySelector(".close-button");
 const modalContent = document.querySelector(".game-values");
 const playAgainButton = document.querySelector(".play-again-btn");
 
 function insertModalContent() {
-    let countValue = movesCounter + 1; // adding 1 to count to get the correct value of the counter
+    let countValue = movesCounter + 1; // add 1 to count, to get the correct value of the counter
+    // create modal content
     let gameValues = `<p class="moves-num"><strong>Number of moves:  </strong><span>${countValue}</span></p>
     <p class="time-played"><strong>Time played: </strong><span>${minutes.textContent}:${seconds.textContent}</span></p>
     <div class="stars-achieved"><strong>Stars earned: </strong>${starsNum}</div>`;
