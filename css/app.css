@@ -125,3 +125,108 @@ h1 {
     cursor: pointer;
     display: inline-flex;
 }
+
+/*
+ * Styles for the Modal
+*/
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 41rem;
+    border-radius: 0.5rem;
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.modal-header {
+    height: 50px;
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.modal-footer {
+    border-top: 1px solid black;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.game-values .stars {
+    display: inline-flex;
+}
+
+.game-values .stars li {
+    list-style: none;
+    display: inline-flex;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.time-played {
+    margin-top: 30px;
+}
+
+.stars-achieved {
+    margin-top: 0;
+}
+
+.moves-num > span {
+    margin-left: 30px;
+}
+
+.time-played > span {
+    margin-left: 40px;
+}
+
+.play-again-btn {
+    background-color: #02ccba;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin-top: 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.play-again-btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
