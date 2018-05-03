@@ -183,8 +183,10 @@ function cardTest(event) {
             matchCard(openCardsList[0].item(0));
             matchCard(openCardsList[1].item(0));
             // check for end of the game
-            if (matchedCardsCount === 16) {
+            if (matchedCardsCount === 4) {
                 stopTimer();
+                insertModalContent();
+                toggleModal();
             }
         } else {
             // hide cards
@@ -209,6 +211,10 @@ function restartGame() {
     while (deck.firstChild) {
         deck.removeChild(deck.firstChild);
     }
+    // removing modal game values
+    while (modalContent.firstChild) {
+        modalContent.removeChild(modalContent.firstChild);
+    }
     shuffle(cardsArray);
     buildCards();
     stopTimer();
@@ -230,3 +236,34 @@ function restartGame() {
 
 const restartButton = document.querySelector(".restart");
 restartButton.addEventListener('click', restartGame);
+
+// Modal
+const modal = document.querySelector(".modal");
+const closeButton = document.querySelector(".close-button");
+const modalContent = document.querySelector(".game-values");
+const playAgainButton = document.querySelector(".play-again-btn");
+
+function insertModalContent() {
+    let countValue = movesCounter + 1; // adding 1 to count to get the correct value of the counter
+    let gameValues = `<p class="moves-num"><strong>Number of moves:  </strong><span>${countValue}</span></p>
+    <p class="time-played"><strong>Time played: </strong><span>${minutes.textContent}:${seconds.textContent}</span></p>
+    <div class="stars-achieved"><strong>Stars earned: </strong>${starsNum}</div>`;
+    modalContent.insertAdjacentHTML("beforeend", gameValues);
+}
+
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+playAgainButton.addEventListener("click", function() {
+    toggleModal();
+    restartGame();
+});
