@@ -183,7 +183,7 @@ function cardTest(event) {
             matchCard(openCardsList[0].item(0));
             matchCard(openCardsList[1].item(0));
             // check for end of the game
-            if (matchedCardsCount === 4) {
+            if (matchedCardsCount === 16) {
                 stopTimer();
                 insertModalContent();
                 toggleModal();
