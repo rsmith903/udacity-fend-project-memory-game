@@ -1,20 +1,17 @@
-# Memory Game Project
+# Udacity Front-End Web Developer Nanodegree
 
-## Table of Contents
+## Part 2: Web Programming with JavaScript
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+### Project 3: Memory Game
 
-## Instructions
+- This project is a part of Udacity's Front-End Web Developer Nanodegree. It is uploaded on GitHub as a separate repository for grading purposes.
+- For this project I used vanilla JavaScript (no jQuery).
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+### Game instructions
 
-To get started, open `js/app.js` and start building out the app's functionality
+Match pair of cards until all cards are matched.
+At the end of the game you will see the number of moves it took, time spent playing and stars earned.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+### Where to play the game
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+The game can be played on [GitHub pages](https://kmandic.github.io/udacity-fend-project-memory-game/).
