@@ -15,23 +15,33 @@
             <h1>Matching Game</h1>
         </header>
 
+        <!-- Modal code -->
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close-button">&times;</span>
+                </div>
+                <h1>Congratulations, you've finished the game!</h1>
+                <div class="game-values"></div>
+                <div class="modal-footer">
+                    <button class="play-again-btn"><strong>Play again</strong></button>
+                </div>
+            </div>
+        </div> <!-- End modal -->
+
         <section class="score-panel">
             <div>Number of moves:
                 <span class="moves">0</span>
             </div>
-
             <span>Number of stars: </span>
-
             <ul class="stars">
                 <li><i class="fa fa-star"></i></li>
                 <li><i class="fa fa-star"></i></li>
                 <li><i class="fa fa-star"></i></li>
             </ul>
-
             <div class="timer">
                 Time: <span class="minute">00</span><span> : </span><span class="second">00</span>
             </div>
-
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
