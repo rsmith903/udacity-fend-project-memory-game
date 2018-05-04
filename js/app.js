@@ -4,22 +4,24 @@ let second, minute, startTimer, isFirstClick, matchedCardsCount, movesCounter, s
  * Create a list that holds all of your cards
  */
 
-const cardsArray = ["fa-diamond",
-                    "fa-paper-plane-o",
-                    "fa-anchor",
-                    "fa-bolt",
-                    "fa-cube",
-                    "fa-anchor",
-                    "fa-leaf",
-                    "fa-bicycle",
-                    "fa-diamond",
-                    "fa-bomb",
-                    "fa-leaf",
-                    "fa-bomb",
-                    "fa-bolt",
-                    "fa-bicycle",
-                    "fa-paper-plane-o",
-                    "fa-cube"];
+const cardsArray = [
+    'fa-diamond',
+    'fa-paper-plane-o',
+    'fa-anchor',
+    'fa-bolt',
+    'fa-cube',
+    'fa-anchor',
+    'fa-leaf',
+    'fa-bicycle',
+    'fa-diamond',
+    'fa-bomb',
+    'fa-leaf',
+    'fa-bomb',
+    'fa-bolt',
+    'fa-bicycle',
+    'fa-paper-plane-o',
+    'fa-cube'
+];
 
 /*
  * Display the cards on the page
@@ -45,13 +47,13 @@ function shuffle(array) {
 
 shuffle(cardsArray);
 
-const deck = document.querySelector(".deck");
+const deck = document.querySelector('.deck');
 
 function buildCards() {
     // create and add cards
     cardsArray.forEach(function(faClass) {
         let cardElement = `<li class="card"><i class="fa ${faClass}"></i></li>`;
-        deck.insertAdjacentHTML("beforeend", cardElement);
+        deck.insertAdjacentHTML('beforeend', cardElement);
     });
 }
 
@@ -61,8 +63,8 @@ buildCards();
 second = 0;
 minute = 1;
 
-const seconds = document.querySelector(".second");
-const minutes = document.querySelector(".minute");
+const seconds = document.querySelector('.second');
+const minutes = document.querySelector('.minute');
 
 function timer() {
     if (second < 60) {
@@ -110,19 +112,19 @@ function showCard(event) {
             }, 1000);
             isFirstClick = false;
         }
-        event.target.classList.add("open", "show");
+        event.target.classList.add('open', 'show');
         // test if cards match
         cardTest(event);
     }
 }
 
 function hideCard() {
-    const openedCard = document.getElementsByClassName("open");
-    openedCard[0].classList.add("no-match");
-    openedCard[1].classList.add("no-match");
+    const openedCard = document.getElementsByClassName('open');
+    openedCard[0].classList.add('no-match');
+    openedCard[1].classList.add('no-match');
     setTimeout(function(){
-        openedCard[0].classList.remove("open", "show", "no-match");
-        openedCard[0].classList.remove("open", "show", "no-match");
+        openedCard[0].classList.remove('open', 'show', 'no-match');
+        openedCard[0].classList.remove('open', 'show', 'no-match');
     }, 500);
 }
 
@@ -130,15 +132,15 @@ function hideCard() {
 matchedCardsCount = 0;
 
 function matchCard(element) {
-    element.parentElement.classList.remove("open", "show");
-    element.parentElement.classList.add("match");
+    element.parentElement.classList.remove('open', 'show');
+    element.parentElement.classList.add('match');
     matchedCardsCount++;
 }
 
 // count number of moves (pair of cards clicked)
 movesCounter = 0;
 
-const movesDisplay = document.querySelector(".moves");
+const movesDisplay = document.querySelector('.moves');
 
 function movesCount() {
     movesCounter += 1;
@@ -146,7 +148,7 @@ function movesCount() {
 }
 
 // Stars rating
-const stars = document.querySelector(".stars");
+const stars = document.querySelector('.stars');
 const star = '<li><i class="fa fa-star"></i></li>'
 
 // create modal rating value, number of stars at the begining of the game
@@ -158,14 +160,14 @@ starsNum = `<ul class="stars">
 
 function starsRating() {
     if (movesCounter >= 12 && movesCounter < 20) {
-        stars.childNodes[5].firstElementChild.style.color = "rgba(170, 126, 205, 0.3)";
+        stars.childNodes[5].firstElementChild.style.color = 'rgba(170, 126, 205, 0.3)';
         starsNum = `<ul class="stars">
                         ${star}
                         ${star}
                     </ul>`;
     }
     if (movesCounter >= 20) {
-        stars.childNodes[3].firstElementChild.style.color = "rgba(170, 126, 205, 0.3)";
+        stars.childNodes[3].firstElementChild.style.color = 'rgba(170, 126, 205, 0.3)';
         starsNum = `<ul class="stars">
                         ${star}
                     </ul>`;
@@ -228,21 +230,21 @@ function restartGame() {
                     ${star}
                 </ul>`;
     movesDisplay.textContent = movesCounter;
-    stars.childNodes[3].firstElementChild.style.color = "rgba(170, 126, 205, 1)";
-    stars.childNodes[5].firstElementChild.style.color = "rgba(170, 126, 205, 1)";
-    seconds.textContent = "00";
-    minutes.textContent = "00";
+    stars.childNodes[3].firstElementChild.style.color = 'rgba(170, 126, 205, 1)';
+    stars.childNodes[5].firstElementChild.style.color = 'rgba(170, 126, 205, 1)';
+    seconds.textContent = '00';
+    minutes.textContent = '00';
     openCardsList = [];
 }
 
-const restartButton = document.querySelector(".restart");
+const restartButton = document.querySelector('.restart');
 restartButton.addEventListener('click', restartGame);
 
 // Pop-up modal
-const modal = document.querySelector(".modal");
-const closeButton = document.querySelector(".close-button");
-const modalContent = document.querySelector(".game-values");
-const playAgainButton = document.querySelector(".play-again-btn");
+const modal = document.querySelector('.modal');
+const closeButton = document.querySelector('.close-button');
+const modalContent = document.querySelector('.game-values');
+const playAgainButton = document.querySelector('.play-again-btn');
 
 function insertModalContent() {
     let countValue = movesCounter + 1; // add 1 to count, to get the correct value of the counter
@@ -250,11 +252,11 @@ function insertModalContent() {
     let gameValues = `<p class="moves-num"><strong>Number of moves:  </strong><span>${countValue}</span></p>
     <p class="time-played"><strong>Time played: </strong><span>${minutes.textContent}:${seconds.textContent}</span></p>
     <div class="stars-achieved"><strong>Stars earned: </strong>${starsNum}</div>`;
-    modalContent.insertAdjacentHTML("beforeend", gameValues);
+    modalContent.insertAdjacentHTML('beforeend', gameValues);
 }
 
 function toggleModal() {
-    modal.classList.toggle("show-modal");
+    modal.classList.toggle('show-modal');
 }
 
 function windowOnClick(event) {
@@ -263,9 +265,9 @@ function windowOnClick(event) {
     }
 }
 
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
-playAgainButton.addEventListener("click", function() {
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
+playAgainButton.addEventListener('click', function() {
     toggleModal();
     restartGame();
 });
