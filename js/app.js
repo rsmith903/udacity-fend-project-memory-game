@@ -1,27 +1,33 @@
 let second, minute, startTimer, isFirstClick, matchedCardsCount, movesCounter, starsNum, openCardsList;
 
+const deck = document.querySelector('.deck');
+const seconds = document.querySelector('.second');
+const minutes = document.querySelector('.minute');
+const movesDisplay = document.querySelector('.moves');
+const stars = document.querySelector('.stars');
+const star = '<li><i class="fa fa-star"></i></li>';
+const restartButton = document.querySelector('.restart');
+const modal = document.querySelector('.modal');
+const closeButton = document.querySelector('.close-button');
+const modalContent = document.querySelector('.game-values');
+const playAgainButton = document.querySelector('.play-again-btn');
+
 /*
  * Create a list that holds all of your cards
  */
 
-const cardsArray = [
+const cardIcons = [
     'fa-diamond',
     'fa-paper-plane-o',
     'fa-anchor',
     'fa-bolt',
     'fa-cube',
-    'fa-anchor',
     'fa-leaf',
     'fa-bicycle',
-    'fa-diamond',
     'fa-bomb',
-    'fa-leaf',
-    'fa-bomb',
-    'fa-bolt',
-    'fa-bicycle',
-    'fa-paper-plane-o',
-    'fa-cube'
 ];
+
+const cardsArray = cardIcons.concat(cardIcons);
 
 /*
  * Display the cards on the page
@@ -47,8 +53,6 @@ function shuffle(array) {
 
 shuffle(cardsArray);
 
-const deck = document.querySelector('.deck');
-
 function buildCards() {
     // create and add cards
     cardsArray.forEach(function(faClass) {
@@ -62,9 +66,6 @@ buildCards();
 // Timer:
 second = 0;
 minute = 1;
-
-const seconds = document.querySelector('.second');
-const minutes = document.querySelector('.minute');
 
 function timer() {
     if (second < 60) {
@@ -140,17 +141,12 @@ function matchCard(element) {
 // count number of moves (pair of cards clicked)
 movesCounter = 0;
 
-const movesDisplay = document.querySelector('.moves');
-
 function movesCount() {
     movesCounter += 1;
     movesDisplay.textContent = movesCounter;
 }
 
 // Stars rating
-const stars = document.querySelector('.stars');
-const star = '<li><i class="fa fa-star"></i></li>'
-
 // create modal rating value, number of stars at the begining of the game
 starsNum = `<ul class="stars">
                 ${star}
@@ -236,16 +232,9 @@ function restartGame() {
     minutes.textContent = '00';
     openCardsList = [];
 }
-
-const restartButton = document.querySelector('.restart');
 restartButton.addEventListener('click', restartGame);
 
 // Pop-up modal
-const modal = document.querySelector('.modal');
-const closeButton = document.querySelector('.close-button');
-const modalContent = document.querySelector('.game-values');
-const playAgainButton = document.querySelector('.play-again-btn');
-
 function insertModalContent() {
     let countValue = movesCounter + 1; // add 1 to count, to get the correct value of the counter
     // create modal content
