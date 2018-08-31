@@ -63,26 +63,48 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    -webkit-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+	 animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
+    -webkit-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+	 animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+
 }
 
 .deck .card.show {
     font-size: 33px;
 }
 
-.deck .card.no-match {
+.deck .card.open.no-match {
     background-color: #e40202;
+    -webkit-animation: bounce-top 0.9s both;
+	        animation: bounce-top 0.9s both;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	        animation: heartbeat 1.5s ease-in-out infinite both;
+    
+@media screen and (max-width: 400px){
+    .deck{
+        margin-top: 1em;
+    }
+    .deck, .win-container {
+        width: 360px;
+        min-height: 400px;
+        padding: 10px;
+    }
+    .deck .card {
+        height: 72px;
+        width: 72px;
 }
 
 /*
